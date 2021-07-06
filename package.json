@@ -1,0 +1,18 @@
+{
+  "name": "streamsocialtoken",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "3.4.1",
+    "@superfluid-finance/ethereum-contracts": "^1.0.0-rc.4"
+  }
+}
