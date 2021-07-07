@@ -1,0 +1,421 @@
+{
+  "contractName": "CustomSuperTokenProxyBase",
+  "abi": [
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "initialAddress",
+          "type": "address"
+        }
+      ],
+      "name": "initializeProxy",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"initialAddress\",\"type\":\"address\"}],\"name\":\"initializeProxy\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"details\":\"Custom super token proxy base contract NOTE: - Because of how solidity is layouting its storages variables and custom   super token inherits the Super Token standard implementation, so it is   required that the custom token proxy would need to pad its implementation   with reserved storages used by the Super Token implementation. - Refer to SETH.sol for an example how it is used.\",\"kind\":\"dev\",\"methods\":{\"initializeProxy(address)\":{\"details\":\"Proxy initialization function.      This should only be called once and it is permission-less.\",\"params\":{\"initialAddress\":\"Initial logic contract code address to be used.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/CustomSuperTokenProxyBase.sol\":\"CustomSuperTokenProxyBase\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/proxy/Proxy.sol\":{\"keccak256\":\"0xc33f9858a67e34c77831163d5611d21fc627dfd2c303806a98a6c9db5a01b034\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9c355f202b25ef6fc295783e249fb5f706d7c85a722cebfc8c23efeca36d9697\",\"dweb:/ipfs/QmdfJZr16GmXrxnE6d4gpiT2TFAbTL5ZS6wegFmd6cpviF\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xbd74f587ab9b9711801baf667db1426e4a03fd2d7f15af33e0e0d0394e7cef76\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2d0913dfbfce90d170df0d496ad7596c0778518e5fa7aba6c32562522546f66b\",\"dweb:/ipfs/QmR6B8nLj2PJf5e1JWD9Nk7ErkAwkqUwadCnvE82FJr1RU\"]},\"@openzeppelin/contracts/token/ERC777/IERC777.sol\":{\"keccak256\":\"0x66622d89fb8f57aa1c09f69b1088d242aa92ceba96462854396ddb724e71849f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://abb0340421d8a39de72aa4679351f2eba6eee62f4ccfaa649852431f5d361165\",\"dweb:/ipfs/QmULDf3ot52Qd1s5LDjD11bGFCM8f212KTmazvvaT64Uk4\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/CustomSuperTokenProxyBase.sol\":{\"keccak256\":\"0xbddd10d69b20155a1dbd84d19a558e90e3a6e5f1e4275ac52074462e059e4dc3\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://ba9bdfa13014e5c1d5322042b1193342dc4c21a99e011376ef26c2fda91c1d81\",\"dweb:/ipfs/QmP8oQ1CHKp9xsHnxCFp4nwrk85U4W3Jthc9WakRxwtuR7\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/Definitions.sol\":{\"keccak256\":\"0x10a14c2e43cb4111474ff6679429b15f3572fb24b1b5635f095998269a7d29c0\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://5d3a9bacd30f3c2cd2209b63117e4c97351921252e3cda41e3d8cb476424e3cf\",\"dweb:/ipfs/QmcgwmUMJYpQUKWPRRMHCmE7wZG3pfmsYanzPs1fRg7bQw\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperAgreement.sol\":{\"keccak256\":\"0xcf8a33fadd5db47562156a11098623246efd1b46a2c3d28269767bcbb324fd66\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://5c0273b4a136874ca4ad1b3f66b312adfa8e8ed48b301e4e979081d4923bb55f\",\"dweb:/ipfs/QmQvK9ZQggymJAftai2aA89EfQY2hX3MSpejNkr6kNf45m\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperApp.sol\":{\"keccak256\":\"0xca93702505ec3c8244227e372687d9bdbc9d368fa07723d310ab9550501abb2a\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://3514c2c72fc866064227ea28fceea9dec4ca27cdbda2cff546b59f6b899cee4d\",\"dweb:/ipfs/QmdpFCRDm8An2U6TCTUK3Zopp8wVS44mzh2YjVvtruE3dZ\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperToken.sol\":{\"keccak256\":\"0xba355f7d7d5d32ca345bcdb355759ba598a911ff07227ff80012a5e0bf660fb1\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://72c2669590a012587b892f0bbb166079ffb9e4c2044511b45eb6b34489f83b30\",\"dweb:/ipfs/QmQckdZ7tbboxPpXSt8irWo98KBcZRT5xNPuGf7yuZxZw2\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperTokenFactory.sol\":{\"keccak256\":\"0x7dc514c6c9eda681ed8ad66ccfb68dc22764b6c429ab55fddbba28b6b148621b\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://bc4b3b35bb0ddd9323afa1f25468eb706e5f7eccce6ff9beec9657aeea8bec33\",\"dweb:/ipfs/QmSLKq8JYWavnjDokYoe1cUERbvWFfiBWBJ2zDCMVyycsM\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol\":{\"keccak256\":\"0xa635a5d3a3ce81031a7faff1d8931af1a44d6d0a4cdba5e5001fefe73c61ce23\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://8e8295838db97c3f06b7e0eada48466c96966ca0f17eb48a5859f6b47c68894b\",\"dweb:/ipfs/QmbFyYMY2cAFTxUs1Hi3nc2dnY655QrozQXkndFV1MNQ3a\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidGovernance.sol\":{\"keccak256\":\"0x1494ca0fcbe19dac4d2cf599dacd1053c1405d96965761f4bbae9fc4f39e88ac\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://c9331c83987de6df504b8944efbc312fb8de474b16c191acc135c2a5a4666583\",\"dweb:/ipfs/QmfBbxJBd3bXYZ7Ue8hJds2Sbytzkc4R68dVcbUB2e8PTB\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidToken.sol\":{\"keccak256\":\"0xb58031b818a77395ad103ad3f97722b67deef9d7ad4927b07cc012e12cd942cc\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://cdcb2be7d83a5f46d5ad7a3c24e2449c4c24942ebd3d7354eb27cbd1a9496449\",\"dweb:/ipfs/QmPYNYn4NHt8sc3mM5NgAWQaBmQ7VC3rxXFTxhkwTaP2cj\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/tokens/ERC20WithTokenInfo.sol\":{\"keccak256\":\"0x808d3a486826e7f119671174a77896c6e23578e691625350dbb3e9f74a0d5137\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://06a7a1bc2ed6888c7080a8e1fb676b7f3972b3f22620c771a41ca3a0ee78b968\",\"dweb:/ipfs/QmW7qpRwv2vEtCtENoP4BUkK4yRBbiKUZbPbyXNbPthiLQ\"]},\"@superfluid-finance/ethereum-contracts/contracts/interfaces/tokens/TokenInfo.sol\":{\"keccak256\":\"0x4dee21b8f64edbfe811a300d31f529b5367d1186d69b8b2b8dc3373be7a108b0\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://67edf7ddbd90cd7871dc3c92202d4a749d3be0065174fd0f5b89b18edac9d8d1\",\"dweb:/ipfs/QmNc58Ep6sYkSybGVAgmkeCjHFdBL2m1sGJGUgR99xKqeh\"]},\"@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSProxy.sol\":{\"keccak256\":\"0x56ae5dba7b1f2aa57717b647859a8586244138aee2b1d6b67f266e097c6f6acc\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://f1887056ea1b08b13d6a2170fde9aa480cb3f1a59944641746a3a4f19306895a\",\"dweb:/ipfs/QmWbN56ky7MGnkCn2yYdqmUDCLrKfs7Uf25zXKNMSvRvsL\"]},\"@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSUtils.sol\":{\"keccak256\":\"0x2b47a0c71503981f4cf29656831aee3b038513dcc8554d8a432830af58d29bd1\",\"license\":\"AGPLv3\",\"urls\":[\"bzz-raw://b3bfc98fe566bee28d4431680bced199d498af6045b1380f88499828161429f2\",\"dweb:/ipfs/QmcyxSdt8S6mXZLwGkcmRGusykhoYe2RMAo8QiSFpd97cb\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: AGPLv3\npragma solidity >= 0.7.0;\n\nimport {\n    ISuperToken\n} from \"../../interfaces/superfluid/ISuperToken.sol\";\nimport { UUPSProxy } from \"../../upgradability/UUPSProxy.sol\";\n\n\n/**\n * @dev Custom super token proxy base contract\n *\n * NOTE:\n * - Because of how solidity is layouting its storages variables and custom\n *   super token inherits the Super Token standard implementation, so it is\n *   required that the custom token proxy would need to pad its implementation\n *   with reserved storages used by the Super Token implementation.\n * - Refer to SETH.sol for an example how it is used.\n */\nabstract contract CustomSuperTokenProxyBase is UUPSProxy {\n    // This is the hard-coded number of storage slots used by the super token\n    uint256[32] internal _storagePaddings;\n}\n",
+  "sourcePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/CustomSuperTokenProxyBase.sol",
+  "ast": {
+    "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/CustomSuperTokenProxyBase.sol",
+    "exportedSymbols": {
+      "CustomSuperTokenProxyBase": [
+        3395
+      ],
+      "ISuperToken": [
+        4183
+      ],
+      "UUPSProxy": [
+        5169
+      ]
+    },
+    "id": 3396,
+    "license": "AGPLv3",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3383,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "35:25:22"
+      },
+      {
+        "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperToken.sol",
+        "file": "../../interfaces/superfluid/ISuperToken.sol",
+        "id": 3385,
+        "nodeType": "ImportDirective",
+        "scope": 3396,
+        "sourceUnit": 4184,
+        "src": "62:78:22",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 3384,
+              "name": "ISuperToken",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "src": "75:11:22",
+              "typeDescriptions": {}
+            }
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSProxy.sol",
+        "file": "../../upgradability/UUPSProxy.sol",
+        "id": 3387,
+        "nodeType": "ImportDirective",
+        "scope": 3396,
+        "sourceUnit": 5170,
+        "src": "141:62:22",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 3386,
+              "name": "UUPSProxy",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "src": "150:9:22",
+              "typeDescriptions": {}
+            }
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 3389,
+              "name": "UUPSProxy",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 5169,
+              "src": "673:9:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_UUPSProxy_$5169",
+                "typeString": "contract UUPSProxy"
+              }
+            },
+            "id": 3390,
+            "nodeType": "InheritanceSpecifier",
+            "src": "673:9:22"
+          }
+        ],
+        "contractDependencies": [
+          669,
+          5169
+        ],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 3388,
+          "nodeType": "StructuredDocumentation",
+          "src": "206:419:22",
+          "text": " @dev Custom super token proxy base contract\n NOTE:\n - Because of how solidity is layouting its storages variables and custom\n   super token inherits the Super Token standard implementation, so it is\n   required that the custom token proxy would need to pad its implementation\n   with reserved storages used by the Super Token implementation.\n - Refer to SETH.sol for an example how it is used."
+        },
+        "fullyImplemented": true,
+        "id": 3395,
+        "linearizedBaseContracts": [
+          3395,
+          5169,
+          669
+        ],
+        "name": "CustomSuperTokenProxyBase",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 3394,
+            "mutability": "mutable",
+            "name": "_storagePaddings",
+            "nodeType": "VariableDeclaration",
+            "scope": 3395,
+            "src": "767:37:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_uint256_$32_storage",
+              "typeString": "uint256[32]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 3391,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "767:7:22",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "id": 3393,
+              "length": {
+                "hexValue": "3332",
+                "id": 3392,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "kind": "number",
+                "lValueRequested": false,
+                "nodeType": "Literal",
+                "src": "775:2:22",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_rational_32_by_1",
+                  "typeString": "int_const 32"
+                },
+                "value": "32"
+              },
+              "nodeType": "ArrayTypeName",
+              "src": "767:11:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_uint256_$32_storage_ptr",
+                "typeString": "uint256[32]"
+              }
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 3396,
+        "src": "626:181:22"
+      }
+    ],
+    "src": "35:773:22"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/CustomSuperTokenProxyBase.sol",
+      "exportedSymbols": {
+        "CustomSuperTokenProxyBase": [
+          3395
+        ],
+        "ISuperToken": [
+          4183
+        ],
+        "UUPSProxy": [
+          5169
+        ]
+      },
+      "license": "AGPLv3"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.7",
+            ".0"
+          ]
+        },
+        "id": 3383,
+        "name": "PragmaDirective",
+        "src": "35:25:22"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 4184,
+          "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperToken.sol",
+          "file": "../../interfaces/superfluid/ISuperToken.sol",
+          "scope": 3396,
+          "symbolAliases": [
+            {
+              "foreign": {
+                "attributes": {
+                  "overloadedDeclarations": [
+                    null
+                  ],
+                  "value": "ISuperToken"
+                },
+                "id": 3384,
+                "name": "Identifier",
+                "src": "75:11:22"
+              }
+            }
+          ],
+          "unitAlias": ""
+        },
+        "id": 3385,
+        "name": "ImportDirective",
+        "src": "62:78:22"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 5170,
+          "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSProxy.sol",
+          "file": "../../upgradability/UUPSProxy.sol",
+          "scope": 3396,
+          "symbolAliases": [
+            {
+              "foreign": {
+                "attributes": {
+                  "overloadedDeclarations": [
+                    null
+                  ],
+                  "value": "UUPSProxy"
+                },
+                "id": 3386,
+                "name": "Identifier",
+                "src": "150:9:22"
+              }
+            }
+          ],
+          "unitAlias": ""
+        },
+        "id": 3387,
+        "name": "ImportDirective",
+        "src": "141:62:22"
+      },
+      {
+        "attributes": {
+          "abstract": true,
+          "contractDependencies": [
+            669,
+            5169
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            3395,
+            5169,
+            669
+          ],
+          "name": "CustomSuperTokenProxyBase",
+          "scope": 3396
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": " @dev Custom super token proxy base contract\n NOTE:\n - Because of how solidity is layouting its storages variables and custom\n   super token inherits the Super Token standard implementation, so it is\n   required that the custom token proxy would need to pad its implementation\n   with reserved storages used by the Super Token implementation.\n - Refer to SETH.sol for an example how it is used."
+            },
+            "id": 3388,
+            "name": "StructuredDocumentation",
+            "src": "206:419:22"
+          },
+          {
+            "attributes": {},
+            "children": [
+              {
+                "attributes": {
+                  "name": "UUPSProxy",
+                  "referencedDeclaration": 5169,
+                  "type": "contract UUPSProxy"
+                },
+                "id": 3389,
+                "name": "UserDefinedTypeName",
+                "src": "673:9:22"
+              }
+            ],
+            "id": 3390,
+            "name": "InheritanceSpecifier",
+            "src": "673:9:22"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "mutability": "mutable",
+              "name": "_storagePaddings",
+              "scope": 3395,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256[32]",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "uint256[32]"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 3391,
+                    "name": "ElementaryTypeName",
+                    "src": "767:7:22"
+                  },
+                  {
+                    "attributes": {
+                      "hexvalue": "3332",
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "token": "number",
+                      "type": "int_const 32",
+                      "value": "32"
+                    },
+                    "id": 3392,
+                    "name": "Literal",
+                    "src": "775:2:22"
+                  }
+                ],
+                "id": 3393,
+                "name": "ArrayTypeName",
+                "src": "767:11:22"
+              }
+            ],
+            "id": 3394,
+            "name": "VariableDeclaration",
+            "src": "767:37:22"
+          }
+        ],
+        "id": 3395,
+        "name": "ContractDefinition",
+        "src": "626:181:22"
+      }
+    ],
+    "id": 3396,
+    "name": "SourceUnit",
+    "src": "35:773:22"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-07-07T12:59:41.668Z",
+  "devdoc": {
+    "details": "Custom super token proxy base contract NOTE: - Because of how solidity is layouting its storages variables and custom   super token inherits the Super Token standard implementation, so it is   required that the custom token proxy would need to pad its implementation   with reserved storages used by the Super Token implementation. - Refer to SETH.sol for an example how it is used.",
+    "kind": "dev",
+    "methods": {
+      "initializeProxy(address)": {
+        "details": "Proxy initialization function.      This should only be called once and it is permission-less.",
+        "params": {
+          "initialAddress": "Initial logic contract code address to be used."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

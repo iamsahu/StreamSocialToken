@@ -37,20 +37,19 @@ contract MainMintingContract {
     constructor (
         ISuperfluid host,
         IConstantFlowAgreementV1 cfa,
-        ISuperTokenFactory superTokenFactory) public {
+        ISuperTokenFactory superTokenFactory) {
         _superTokenFactory = superTokenFactory;
     }
 
     function mintSuperSocialToken(string calldata name,string calldata symbol,uint TOTAL_SUPPLY) external returns(address) {
         // require(_socialTokenMapping[msg.sender],"You have already created a social token");
-         _socialToken = INativeSuperToken(address(new NativeSuperTokenProxy()));
+        _socialToken = INativeSuperToken(address(new NativeSuperTokenProxy()));
         _superTokenFactory.initializeCustomSuperToken(address(_socialToken));  
         
         _socialToken.initialize(
             name,
             symbol,
-            TOTAL_SUPPLY,
-            msg.sender
+            TOTAL_SUPPLY
         );
 
         _socialTokenMapping[msg.sender] = address(_socialToken);

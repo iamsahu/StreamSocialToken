@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@openzeppelin/contracts": "3.4.1",
+    "@openzeppelin/contracts": "^3.2.0-solc-0.7",
     "@superfluid-finance/ethereum-contracts": "^1.0.0-rc.4"
   }
 }
