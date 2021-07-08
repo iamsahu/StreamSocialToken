@@ -54,9 +54,10 @@ contract("MainMintingContract", async (accounts) => {
 		// 	st
 		// );
 	});
-	describe("Fuzzy testing", async function () {
+	describe("Testing Flow to a NFT", async function () {
 		it("Case #6 - Random testing", async () => {
 			try {
+				//Creating the custom super token
 				let tp = await _mainMint.mintSuperSocialToken(
 					"SocialStream",
 					"SS",
@@ -67,17 +68,36 @@ contract("MainMintingContract", async (accounts) => {
 				console.log("Error while minting: " + error.message);
 			}
 
+			//Getting the address of the deployed super social token
 			let ssA = await _mainMint.mySuperSocialTokenAddress.call({
 				from: accounts[0],
 			});
 			console.log("Social Token Address: " + ssA);
+
+			//Getting the balance of accounts[0]
+			let dai = await sf.contracts.ISuperToken.at(ssA);
+			console.log("SS: ", (await dai.balanceOf(accounts[0])).toString());
+
 			// console.log(ssA);
+			//Creating a NFT and transferring it to account 2
 			let NFT = await _nftContract.safeMint(accounts[1], "This is a test mint");
+
+			//Initiating a flow to the NFT
+			let flowcr = await _nftContract.createFlow(0, ssA, "385802469");
 			// console.log(NFT.logs);
 			// console.log(NFT.logs[0].args);
 
-			let flowcr = await _nftContract.createFlow(0, ssA, "3858024691358");
-			console.log(flowcr);
+			// const userBob = sf.user({
+			// 	address: accounts[0],
+			// 	token: ssA, // address of the Super Token
+			// });
+
+			// await userBob.flow({
+			// 	recipient: accounts[1],
+			// 	flowRate: "385802469",
+			// });
+
+			// console.log(flowcr);
 		});
 	});
 });

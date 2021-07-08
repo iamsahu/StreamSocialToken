@@ -11,9 +11,14 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
+    ISuperfluid private _host2; // host
+    IConstantFlowAgreementV1 private _cfa2;
 
     constructor(ISuperfluid host,
-        IConstantFlowAgreementV1 cfa) ERC721("SocialStreamableNFT", "SSSNFT") ManageFlows(host,cfa) {}
+        IConstantFlowAgreementV1 cfa) ERC721("SocialStreamableNFT", "SSSNFT") ManageFlows(host,cfa) {
+            _host2 = host;
+        _cfa2 = cfa;
+        }
 
     function safeMint(address to,string memory tokenURI) public {
         _safeMint(to, _tokenIdCounter.current());
@@ -27,7 +32,19 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
 
     function createFlow(uint256 tokenId,address token,int96 flowRate) external{
         require(ownerOf(tokenId)!=msg.sender,"Flow could be created only after the NFT is bought by someone else");
-        CreateFlow(token, ownerOf(tokenId), flowRate);
+        ISuperToken _token = ISuperToken(token);
+        _host2.callAgreement(
+            _cfa2,
+            abi.encodeWithSelector(
+                _cfa2.createFlow.selector,
+                _token,
+                ownerOf(tokenId),
+                flowRate,
+                new bytes(0)
+            ),
+            "0x"
+        );
+        // CreateFlow(token, ownerOf(tokenId), flowRate);
     }
 
     function _beforeTokenTransfer(

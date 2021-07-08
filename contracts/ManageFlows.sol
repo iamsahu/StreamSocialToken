@@ -20,8 +20,8 @@ contract ManageFlows is SuperAppBase{
     mapping (uint256=>IConstantFlowAgreementV1) _nftFlow;
     mapping (address=>ISuperToken) _flowToken;
 
-    ISuperfluid private _host; // host
-    IConstantFlowAgreementV1 private _cfa;
+    ISuperfluid internal _host; // host
+    IConstantFlowAgreementV1 internal _cfa;
     
     constructor (ISuperfluid host,
         IConstantFlowAgreementV1 cfa) public {
