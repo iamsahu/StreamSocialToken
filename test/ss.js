@@ -87,6 +87,7 @@ contract("MainMintingContract", async (accounts) => {
 			// console.log(NFT.logs);
 			// console.log(NFT.logs[0].args);
 
+			//The code below runs and I am able to create the flow
 			// const userBob = sf.user({
 			// 	address: accounts[0],
 			// 	token: ssA, // address of the Super Token
