@@ -7,30 +7,30 @@
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "136:933:35:-:0;;;;;;;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "136:933:35:-:0;;;;;;;;",
+  "sourceMap": "136:933:40:-:0;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "136:933:40:-:0;;;;;;;;",
   "source": "// SPDX-License-Identifier: AGPLv3\npragma solidity 0.7.6;\n\n/**\n * @title UUPS (Universal Upgradeable Proxy Standard) Shared Library\n */\nlibrary UUPSUtils {\n\n    /**\n     * @dev Implementation slot constant.\n     * Using https://eips.ethereum.org/EIPS/eip-1967 standard\n     * Storage slot 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc\n     * (obtained as bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1)).\n     */\n    bytes32 internal constant _IMPLEMENTATION_SLOT = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;\n\n    /// @dev Get implementation address.\n    function implementation() internal view returns (address impl) {\n        assembly { // solium-disable-line\n            impl := sload(_IMPLEMENTATION_SLOT)\n        }\n    }\n\n    /// @dev Set new implementation address.\n    function setImplementation(address codeAddress) internal {\n        assembly {\n            // solium-disable-line\n            sstore(\n                _IMPLEMENTATION_SLOT,\n                codeAddress\n            )\n        }\n    }\n\n}\n",
   "sourcePath": "@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSUtils.sol",
   "ast": {
     "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSUtils.sol",
     "exportedSymbols": {
       "UUPSUtils": [
-        5193
+        5726
       ]
     },
-    "id": 5194,
+    "id": 5727,
     "license": "AGPLv3",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5171,
+        "id": 5704,
         "literals": [
           "solidity",
           "0.7",
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "35:22:35"
+        "src": "35:22:40"
       },
       {
         "abstract": false,
@@ -38,15 +38,15 @@
         "contractDependencies": [],
         "contractKind": "library",
         "documentation": {
-          "id": 5172,
+          "id": 5705,
           "nodeType": "StructuredDocumentation",
-          "src": "59:76:35",
+          "src": "59:76:40",
           "text": " @title UUPS (Universal Upgradeable Proxy Standard) Shared Library"
         },
         "fullyImplemented": true,
-        "id": 5193,
+        "id": 5726,
         "linearizedBaseContracts": [
-          5193
+          5726
         ],
         "name": "UUPSUtils",
         "nodeType": "ContractDefinition",
@@ -54,17 +54,17 @@
           {
             "constant": true,
             "documentation": {
-              "id": 5173,
+              "id": 5706,
               "nodeType": "StructuredDocumentation",
-              "src": "161:288:35",
+              "src": "161:288:40",
               "text": " @dev Implementation slot constant.\n Using https://eips.ethereum.org/EIPS/eip-1967 standard\n Storage slot 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc\n (obtained as bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1))."
             },
-            "id": 5176,
+            "id": 5709,
             "mutability": "constant",
             "name": "_IMPLEMENTATION_SLOT",
             "nodeType": "VariableDeclaration",
-            "scope": 5193,
-            "src": "454:115:35",
+            "scope": 5726,
+            "src": "454:115:40",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -72,10 +72,10 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 5174,
+              "id": 5707,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
-              "src": "454:7:35",
+              "src": "454:7:40",
               "typeDescriptions": {
                 "typeIdentifier": "t_bytes32",
                 "typeString": "bytes32"
@@ -83,14 +83,14 @@
             },
             "value": {
               "hexValue": "307833363038393461313362613161333231303636376338323834393264623938646361336532303736636333373335613932306133636135303564333832626263",
-              "id": 5175,
+              "id": 5708,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "503:66:35",
+              "src": "503:66:40",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_24440054405305269366569402256811496959409073762505157381672968839269610695612_by_1",
                 "typeString": "int_const 2444...(69 digits omitted)...5612"
@@ -101,39 +101,39 @@
           },
           {
             "body": {
-              "id": 5183,
+              "id": 5716,
               "nodeType": "Block",
-              "src": "680:107:35",
+              "src": "680:107:40",
               "statements": [
                 {
                   "AST": {
                     "nodeType": "YulBlock",
-                    "src": "699:82:35",
+                    "src": "699:82:40",
                     "statements": [
                       {
                         "nodeType": "YulAssignment",
-                        "src": "736:35:35",
+                        "src": "736:35:40",
                         "value": {
                           "arguments": [
                             {
                               "name": "_IMPLEMENTATION_SLOT",
                               "nodeType": "YulIdentifier",
-                              "src": "750:20:35"
+                              "src": "750:20:40"
                             }
                           ],
                           "functionName": {
                             "name": "sload",
                             "nodeType": "YulIdentifier",
-                            "src": "744:5:35"
+                            "src": "744:5:40"
                           },
                           "nodeType": "YulFunctionCall",
-                          "src": "744:27:35"
+                          "src": "744:27:40"
                         },
                         "variableNames": [
                           {
                             "name": "impl",
                             "nodeType": "YulIdentifier",
-                            "src": "736:4:35"
+                            "src": "736:4:40"
                           }
                         ]
                       }
@@ -142,56 +142,56 @@
                   "evmVersion": "istanbul",
                   "externalReferences": [
                     {
-                      "declaration": 5176,
+                      "declaration": 5709,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "750:20:35",
+                      "src": "750:20:40",
                       "valueSize": 1
                     },
                     {
-                      "declaration": 5180,
+                      "declaration": 5713,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "736:4:35",
+                      "src": "736:4:40",
                       "valueSize": 1
                     }
                   ],
-                  "id": 5182,
+                  "id": 5715,
                   "nodeType": "InlineAssembly",
-                  "src": "690:91:35"
+                  "src": "690:91:40"
                 }
               ]
             },
             "documentation": {
-              "id": 5177,
+              "id": 5710,
               "nodeType": "StructuredDocumentation",
-              "src": "576:36:35",
+              "src": "576:36:40",
               "text": "@dev Get implementation address."
             },
-            "id": 5184,
+            "id": 5717,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "implementation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5178,
+              "id": 5711,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "640:2:35"
+              "src": "640:2:40"
             },
             "returnParameters": {
-              "id": 5181,
+              "id": 5714,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5180,
+                  "id": 5713,
                   "mutability": "mutable",
                   "name": "impl",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5184,
-                  "src": "666:12:35",
+                  "scope": 5717,
+                  "src": "666:12:40",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -199,10 +199,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5179,
+                    "id": 5712,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "666:7:35",
+                    "src": "666:7:40",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -212,24 +212,24 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "665:14:35"
+              "src": "665:14:40"
             },
-            "scope": 5193,
-            "src": "617:170:35",
+            "scope": 5726,
+            "src": "617:170:40",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 5191,
+              "id": 5724,
               "nodeType": "Block",
-              "src": "895:171:35",
+              "src": "895:171:40",
               "statements": [
                 {
                   "AST": {
                     "nodeType": "YulBlock",
-                    "src": "914:146:35",
+                    "src": "914:146:40",
                     "statements": [
                       {
                         "expression": {
@@ -237,74 +237,74 @@
                             {
                               "name": "_IMPLEMENTATION_SLOT",
                               "nodeType": "YulIdentifier",
-                              "src": "987:20:35"
+                              "src": "987:20:40"
                             },
                             {
                               "name": "codeAddress",
                               "nodeType": "YulIdentifier",
-                              "src": "1025:11:35"
+                              "src": "1025:11:40"
                             }
                           ],
                           "functionName": {
                             "name": "sstore",
                             "nodeType": "YulIdentifier",
-                            "src": "963:6:35"
+                            "src": "963:6:40"
                           },
                           "nodeType": "YulFunctionCall",
-                          "src": "963:87:35"
+                          "src": "963:87:40"
                         },
                         "nodeType": "YulExpressionStatement",
-                        "src": "963:87:35"
+                        "src": "963:87:40"
                       }
                     ]
                   },
                   "evmVersion": "istanbul",
                   "externalReferences": [
                     {
-                      "declaration": 5176,
+                      "declaration": 5709,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "987:20:35",
+                      "src": "987:20:40",
                       "valueSize": 1
                     },
                     {
-                      "declaration": 5187,
+                      "declaration": 5720,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "1025:11:35",
+                      "src": "1025:11:40",
                       "valueSize": 1
                     }
                   ],
-                  "id": 5190,
+                  "id": 5723,
                   "nodeType": "InlineAssembly",
-                  "src": "905:155:35"
+                  "src": "905:155:40"
                 }
               ]
             },
             "documentation": {
-              "id": 5185,
+              "id": 5718,
               "nodeType": "StructuredDocumentation",
-              "src": "793:40:35",
+              "src": "793:40:40",
               "text": "@dev Set new implementation address."
             },
-            "id": 5192,
+            "id": 5725,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setImplementation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5188,
+              "id": 5721,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5187,
+                  "id": 5720,
                   "mutability": "mutable",
                   "name": "codeAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5192,
-                  "src": "865:19:35",
+                  "scope": 5725,
+                  "src": "865:19:40",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -312,10 +312,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5186,
+                    "id": 5719,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "865:7:35",
+                    "src": "865:7:40",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -325,33 +325,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "864:21:35"
+              "src": "864:21:40"
             },
             "returnParameters": {
-              "id": 5189,
+              "id": 5722,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "895:0:35"
+              "src": "895:0:40"
             },
-            "scope": 5193,
-            "src": "838:228:35",
+            "scope": 5726,
+            "src": "838:228:40",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 5194,
-        "src": "136:933:35"
+        "scope": 5727,
+        "src": "136:933:40"
       }
     ],
-    "src": "35:1035:35"
+    "src": "35:1035:40"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSUtils.sol",
       "exportedSymbols": {
         "UUPSUtils": [
-          5193
+          5726
         ]
       },
       "license": "AGPLv3"
@@ -365,9 +365,9 @@
             ".6"
           ]
         },
-        "id": 5171,
+        "id": 5704,
         "name": "PragmaDirective",
-        "src": "35:22:35"
+        "src": "35:22:40"
       },
       {
         "attributes": {
@@ -381,26 +381,26 @@
           "contractKind": "library",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            5193
+            5726
           ],
           "name": "UUPSUtils",
-          "scope": 5194
+          "scope": 5727
         },
         "children": [
           {
             "attributes": {
               "text": " @title UUPS (Universal Upgradeable Proxy Standard) Shared Library"
             },
-            "id": 5172,
+            "id": 5705,
             "name": "StructuredDocumentation",
-            "src": "59:76:35"
+            "src": "59:76:40"
           },
           {
             "attributes": {
               "constant": true,
               "mutability": "constant",
               "name": "_IMPLEMENTATION_SLOT",
-              "scope": 5193,
+              "scope": 5726,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "bytes32",
@@ -412,9 +412,9 @@
                   "name": "bytes32",
                   "type": "bytes32"
                 },
-                "id": 5174,
+                "id": 5707,
                 "name": "ElementaryTypeName",
-                "src": "454:7:35"
+                "src": "454:7:40"
               },
               {
                 "attributes": {
@@ -427,22 +427,22 @@
                   "type": "int_const 2444...(69 digits omitted)...5612",
                   "value": "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"
                 },
-                "id": 5175,
+                "id": 5708,
                 "name": "Literal",
-                "src": "503:66:35"
+                "src": "503:66:40"
               },
               {
                 "attributes": {
                   "text": " @dev Implementation slot constant.\n Using https://eips.ethereum.org/EIPS/eip-1967 standard\n Storage slot 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc\n (obtained as bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1))."
                 },
-                "id": 5173,
+                "id": 5706,
                 "name": "StructuredDocumentation",
-                "src": "161:288:35"
+                "src": "161:288:40"
               }
             ],
-            "id": 5176,
+            "id": 5709,
             "name": "VariableDeclaration",
-            "src": "454:115:35"
+            "src": "454:115:40"
           },
           {
             "attributes": {
@@ -453,7 +453,7 @@
                 null
               ],
               "name": "implementation",
-              "scope": 5193,
+              "scope": 5726,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "internal"
@@ -463,9 +463,9 @@
                 "attributes": {
                   "text": "@dev Get implementation address."
                 },
-                "id": 5177,
+                "id": 5710,
                 "name": "StructuredDocumentation",
-                "src": "576:36:35"
+                "src": "576:36:40"
               },
               {
                 "attributes": {
@@ -474,9 +474,9 @@
                   ]
                 },
                 "children": [],
-                "id": 5178,
+                "id": 5711,
                 "name": "ParameterList",
-                "src": "640:2:35"
+                "src": "640:2:40"
               },
               {
                 "children": [
@@ -485,7 +485,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "impl",
-                      "scope": 5184,
+                      "scope": 5717,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -498,19 +498,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 5179,
+                        "id": 5712,
                         "name": "ElementaryTypeName",
-                        "src": "666:7:35"
+                        "src": "666:7:40"
                       }
                     ],
-                    "id": 5180,
+                    "id": 5713,
                     "name": "VariableDeclaration",
-                    "src": "666:12:35"
+                    "src": "666:12:40"
                   }
                 ],
-                "id": 5181,
+                "id": 5714,
                 "name": "ParameterList",
-                "src": "665:14:35"
+                "src": "665:14:40"
               },
               {
                 "children": [
@@ -519,36 +519,36 @@
                       "evmVersion": "istanbul",
                       "externalReferences": [
                         {
-                          "declaration": 5176,
+                          "declaration": 5709,
                           "isOffset": false,
                           "isSlot": false,
-                          "src": "750:20:35",
+                          "src": "750:20:40",
                           "valueSize": 1
                         },
                         {
-                          "declaration": 5180,
+                          "declaration": 5713,
                           "isOffset": false,
                           "isSlot": false,
-                          "src": "736:4:35",
+                          "src": "736:4:40",
                           "valueSize": 1
                         }
                       ],
                       "operations": "{\n    impl := sload(_IMPLEMENTATION_SLOT)\n}"
                     },
                     "children": [],
-                    "id": 5182,
+                    "id": 5715,
                     "name": "InlineAssembly",
-                    "src": "690:91:35"
+                    "src": "690:91:40"
                   }
                 ],
-                "id": 5183,
+                "id": 5716,
                 "name": "Block",
-                "src": "680:107:35"
+                "src": "680:107:40"
               }
             ],
-            "id": 5184,
+            "id": 5717,
             "name": "FunctionDefinition",
-            "src": "617:170:35"
+            "src": "617:170:40"
           },
           {
             "attributes": {
@@ -559,7 +559,7 @@
                 null
               ],
               "name": "setImplementation",
-              "scope": 5193,
+              "scope": 5726,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "internal"
@@ -569,9 +569,9 @@
                 "attributes": {
                   "text": "@dev Set new implementation address."
                 },
-                "id": 5185,
+                "id": 5718,
                 "name": "StructuredDocumentation",
-                "src": "793:40:35"
+                "src": "793:40:40"
               },
               {
                 "children": [
@@ -580,7 +580,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "codeAddress",
-                      "scope": 5192,
+                      "scope": 5725,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -593,19 +593,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 5186,
+                        "id": 5719,
                         "name": "ElementaryTypeName",
-                        "src": "865:7:35"
+                        "src": "865:7:40"
                       }
                     ],
-                    "id": 5187,
+                    "id": 5720,
                     "name": "VariableDeclaration",
-                    "src": "865:19:35"
+                    "src": "865:19:40"
                   }
                 ],
-                "id": 5188,
+                "id": 5721,
                 "name": "ParameterList",
-                "src": "864:21:35"
+                "src": "864:21:40"
               },
               {
                 "attributes": {
@@ -614,9 +614,9 @@
                   ]
                 },
                 "children": [],
-                "id": 5189,
+                "id": 5722,
                 "name": "ParameterList",
-                "src": "895:0:35"
+                "src": "895:0:40"
               },
               {
                 "children": [
@@ -625,46 +625,46 @@
                       "evmVersion": "istanbul",
                       "externalReferences": [
                         {
-                          "declaration": 5176,
+                          "declaration": 5709,
                           "isOffset": false,
                           "isSlot": false,
-                          "src": "987:20:35",
+                          "src": "987:20:40",
                           "valueSize": 1
                         },
                         {
-                          "declaration": 5187,
+                          "declaration": 5720,
                           "isOffset": false,
                           "isSlot": false,
-                          "src": "1025:11:35",
+                          "src": "1025:11:40",
                           "valueSize": 1
                         }
                       ],
                       "operations": "{\n    sstore(_IMPLEMENTATION_SLOT, codeAddress)\n}"
                     },
                     "children": [],
-                    "id": 5190,
+                    "id": 5723,
                     "name": "InlineAssembly",
-                    "src": "905:155:35"
+                    "src": "905:155:40"
                   }
                 ],
-                "id": 5191,
+                "id": 5724,
                 "name": "Block",
-                "src": "895:171:35"
+                "src": "895:171:40"
               }
             ],
-            "id": 5192,
+            "id": 5725,
             "name": "FunctionDefinition",
-            "src": "838:228:35"
+            "src": "838:228:40"
           }
         ],
-        "id": 5193,
+        "id": 5726,
         "name": "ContractDefinition",
-        "src": "136:933:35"
+        "src": "136:933:40"
       }
     ],
-    "id": 5194,
+    "id": 5727,
     "name": "SourceUnit",
-    "src": "35:1035:35"
+    "src": "35:1035:40"
   },
   "compiler": {
     "name": "solc",
@@ -672,7 +672,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-07-07T12:59:41.884Z",
+  "updatedAt": "2021-07-08T12:51:37.515Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

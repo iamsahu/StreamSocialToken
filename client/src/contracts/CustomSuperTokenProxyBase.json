@@ -37,21 +37,21 @@
     "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/CustomSuperTokenProxyBase.sol",
     "exportedSymbols": {
       "CustomSuperTokenProxyBase": [
-        3395
+        3925
       ],
       "ISuperToken": [
-        4183
+        4713
       ],
       "UUPSProxy": [
-        5169
+        5702
       ]
     },
-    "id": 3396,
+    "id": 3926,
     "license": "AGPLv3",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3383,
+        "id": 3913,
         "literals": [
           "solidity",
           ">=",
@@ -59,24 +59,24 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "35:25:22"
+        "src": "35:25:27"
       },
       {
         "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperToken.sol",
         "file": "../../interfaces/superfluid/ISuperToken.sol",
-        "id": 3385,
+        "id": 3915,
         "nodeType": "ImportDirective",
-        "scope": 3396,
-        "sourceUnit": 4184,
-        "src": "62:78:22",
+        "scope": 3926,
+        "sourceUnit": 4714,
+        "src": "62:78:27",
         "symbolAliases": [
           {
             "foreign": {
-              "id": 3384,
+              "id": 3914,
               "name": "ISuperToken",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
-              "src": "75:11:22",
+              "src": "75:11:27",
               "typeDescriptions": {}
             }
           }
@@ -86,19 +86,19 @@
       {
         "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSProxy.sol",
         "file": "../../upgradability/UUPSProxy.sol",
-        "id": 3387,
+        "id": 3917,
         "nodeType": "ImportDirective",
-        "scope": 3396,
-        "sourceUnit": 5170,
-        "src": "141:62:22",
+        "scope": 3926,
+        "sourceUnit": 5703,
+        "src": "141:62:27",
         "symbolAliases": [
           {
             "foreign": {
-              "id": 3386,
+              "id": 3916,
               "name": "UUPSProxy",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
-              "src": "150:9:22",
+              "src": "150:9:27",
               "typeDescriptions": {}
             }
           }
@@ -110,50 +110,50 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 3389,
+              "id": 3919,
               "name": "UUPSProxy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5169,
-              "src": "673:9:22",
+              "referencedDeclaration": 5702,
+              "src": "673:9:27",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_UUPSProxy_$5169",
+                "typeIdentifier": "t_contract$_UUPSProxy_$5702",
                 "typeString": "contract UUPSProxy"
               }
             },
-            "id": 3390,
+            "id": 3920,
             "nodeType": "InheritanceSpecifier",
-            "src": "673:9:22"
+            "src": "673:9:27"
           }
         ],
         "contractDependencies": [
-          669,
-          5169
+          1037,
+          5702
         ],
         "contractKind": "contract",
         "documentation": {
-          "id": 3388,
+          "id": 3918,
           "nodeType": "StructuredDocumentation",
-          "src": "206:419:22",
+          "src": "206:419:27",
           "text": " @dev Custom super token proxy base contract\n NOTE:\n - Because of how solidity is layouting its storages variables and custom\n   super token inherits the Super Token standard implementation, so it is\n   required that the custom token proxy would need to pad its implementation\n   with reserved storages used by the Super Token implementation.\n - Refer to SETH.sol for an example how it is used."
         },
         "fullyImplemented": true,
-        "id": 3395,
+        "id": 3925,
         "linearizedBaseContracts": [
-          3395,
-          5169,
-          669
+          3925,
+          5702,
+          1037
         ],
         "name": "CustomSuperTokenProxyBase",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 3394,
+            "id": 3924,
             "mutability": "mutable",
             "name": "_storagePaddings",
             "nodeType": "VariableDeclaration",
-            "scope": 3395,
-            "src": "767:37:22",
+            "scope": 3925,
+            "src": "767:37:27",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -162,26 +162,26 @@
             },
             "typeName": {
               "baseType": {
-                "id": 3391,
+                "id": 3921,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
-                "src": "767:7:22",
+                "src": "767:7:27",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
-              "id": 3393,
+              "id": 3923,
               "length": {
                 "hexValue": "3332",
-                "id": 3392,
+                "id": 3922,
                 "isConstant": false,
                 "isLValue": false,
                 "isPure": true,
                 "kind": "number",
                 "lValueRequested": false,
                 "nodeType": "Literal",
-                "src": "775:2:22",
+                "src": "775:2:27",
                 "typeDescriptions": {
                   "typeIdentifier": "t_rational_32_by_1",
                   "typeString": "int_const 32"
@@ -189,7 +189,7 @@
                 "value": "32"
               },
               "nodeType": "ArrayTypeName",
-              "src": "767:11:22",
+              "src": "767:11:27",
               "typeDescriptions": {
                 "typeIdentifier": "t_array$_t_uint256_$32_storage_ptr",
                 "typeString": "uint256[32]"
@@ -198,24 +198,24 @@
             "visibility": "internal"
           }
         ],
-        "scope": 3396,
-        "src": "626:181:22"
+        "scope": 3926,
+        "src": "626:181:27"
       }
     ],
-    "src": "35:773:22"
+    "src": "35:773:27"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/CustomSuperTokenProxyBase.sol",
       "exportedSymbols": {
         "CustomSuperTokenProxyBase": [
-          3395
+          3925
         ],
         "ISuperToken": [
-          4183
+          4713
         ],
         "UUPSProxy": [
-          5169
+          5702
         ]
       },
       "license": "AGPLv3"
@@ -230,16 +230,16 @@
             ".0"
           ]
         },
-        "id": 3383,
+        "id": 3913,
         "name": "PragmaDirective",
-        "src": "35:25:22"
+        "src": "35:25:27"
       },
       {
         "attributes": {
-          "SourceUnit": 4184,
+          "SourceUnit": 4714,
           "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperToken.sol",
           "file": "../../interfaces/superfluid/ISuperToken.sol",
-          "scope": 3396,
+          "scope": 3926,
           "symbolAliases": [
             {
               "foreign": {
@@ -249,24 +249,24 @@
                   ],
                   "value": "ISuperToken"
                 },
-                "id": 3384,
+                "id": 3914,
                 "name": "Identifier",
-                "src": "75:11:22"
+                "src": "75:11:27"
               }
             }
           ],
           "unitAlias": ""
         },
-        "id": 3385,
+        "id": 3915,
         "name": "ImportDirective",
-        "src": "62:78:22"
+        "src": "62:78:27"
       },
       {
         "attributes": {
-          "SourceUnit": 5170,
+          "SourceUnit": 5703,
           "absolutePath": "@superfluid-finance/ethereum-contracts/contracts/upgradability/UUPSProxy.sol",
           "file": "../../upgradability/UUPSProxy.sol",
-          "scope": 3396,
+          "scope": 3926,
           "symbolAliases": [
             {
               "foreign": {
@@ -276,43 +276,43 @@
                   ],
                   "value": "UUPSProxy"
                 },
-                "id": 3386,
+                "id": 3916,
                 "name": "Identifier",
-                "src": "150:9:22"
+                "src": "150:9:27"
               }
             }
           ],
           "unitAlias": ""
         },
-        "id": 3387,
+        "id": 3917,
         "name": "ImportDirective",
-        "src": "141:62:22"
+        "src": "141:62:27"
       },
       {
         "attributes": {
           "abstract": true,
           "contractDependencies": [
-            669,
-            5169
+            1037,
+            5702
           ],
           "contractKind": "contract",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            3395,
-            5169,
-            669
+            3925,
+            5702,
+            1037
           ],
           "name": "CustomSuperTokenProxyBase",
-          "scope": 3396
+          "scope": 3926
         },
         "children": [
           {
             "attributes": {
               "text": " @dev Custom super token proxy base contract\n NOTE:\n - Because of how solidity is layouting its storages variables and custom\n   super token inherits the Super Token standard implementation, so it is\n   required that the custom token proxy would need to pad its implementation\n   with reserved storages used by the Super Token implementation.\n - Refer to SETH.sol for an example how it is used."
             },
-            "id": 3388,
+            "id": 3918,
             "name": "StructuredDocumentation",
-            "src": "206:419:22"
+            "src": "206:419:27"
           },
           {
             "attributes": {},
@@ -320,24 +320,24 @@
               {
                 "attributes": {
                   "name": "UUPSProxy",
-                  "referencedDeclaration": 5169,
+                  "referencedDeclaration": 5702,
                   "type": "contract UUPSProxy"
                 },
-                "id": 3389,
+                "id": 3919,
                 "name": "UserDefinedTypeName",
-                "src": "673:9:22"
+                "src": "673:9:27"
               }
             ],
-            "id": 3390,
+            "id": 3920,
             "name": "InheritanceSpecifier",
-            "src": "673:9:22"
+            "src": "673:9:27"
           },
           {
             "attributes": {
               "constant": false,
               "mutability": "mutable",
               "name": "_storagePaddings",
-              "scope": 3395,
+              "scope": 3925,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "uint256[32]",
@@ -354,9 +354,9 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
-                    "id": 3391,
+                    "id": 3921,
                     "name": "ElementaryTypeName",
-                    "src": "767:7:22"
+                    "src": "767:7:27"
                   },
                   {
                     "attributes": {
@@ -369,29 +369,29 @@
                       "type": "int_const 32",
                       "value": "32"
                     },
-                    "id": 3392,
+                    "id": 3922,
                     "name": "Literal",
-                    "src": "775:2:22"
+                    "src": "775:2:27"
                   }
                 ],
-                "id": 3393,
+                "id": 3923,
                 "name": "ArrayTypeName",
-                "src": "767:11:22"
+                "src": "767:11:27"
               }
             ],
-            "id": 3394,
+            "id": 3924,
             "name": "VariableDeclaration",
-            "src": "767:37:22"
+            "src": "767:37:27"
           }
         ],
-        "id": 3395,
+        "id": 3925,
         "name": "ContractDefinition",
-        "src": "626:181:22"
+        "src": "626:181:27"
       }
     ],
-    "id": 3396,
+    "id": 3926,
     "name": "SourceUnit",
-    "src": "35:773:22"
+    "src": "35:773:27"
   },
   "compiler": {
     "name": "solc",
@@ -399,7 +399,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-07-07T12:59:41.668Z",
+  "updatedAt": "2021-07-08T12:51:37.285Z",
   "devdoc": {
     "details": "Custom super token proxy base contract NOTE: - Because of how solidity is layouting its storages variables and custom   super token inherits the Super Token standard implementation, so it is   required that the custom token proxy would need to pad its implementation   with reserved storages used by the Super Token implementation. - Refer to SETH.sol for an example how it is used.",
     "kind": "dev",

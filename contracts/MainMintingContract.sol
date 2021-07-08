@@ -22,10 +22,8 @@ import { INativeSuperToken, NativeSuperTokenProxy } from "@superfluid-finance/et
 
 
 contract MainMintingContract {
-
-    
-    
-    mapping (address=>address) _socialTokenMapping;
+    mapping (address=>bool) public _hasToken;
+    mapping (address=>address) public _socialTokenMapping;
     INativeSuperToken public _socialToken;
     ISuperTokenFactory private _superTokenFactory;
 
@@ -41,15 +39,20 @@ contract MainMintingContract {
         _superTokenFactory = superTokenFactory;
     }
 
-    function mintSuperSocialToken(string calldata name,string calldata symbol,uint TOTAL_SUPPLY) external returns(address) {
-        // require(_socialTokenMapping[msg.sender],"You have already created a social token");
+    function mySuperSocialTokenAddress() external returns(address){
+        return _socialTokenMapping[msg.sender];
+    }
+
+    function mintSuperSocialToken(string calldata name,string calldata symbol,uint256 TOTAL_SUPPLY) external returns(address) {
+        // require(_hasToken[msg.sender],"You have already created a social token");//How to do this?
         _socialToken = INativeSuperToken(address(new NativeSuperTokenProxy()));
         _superTokenFactory.initializeCustomSuperToken(address(_socialToken));  
-        
+        uint256 _TOTAL_SUPPLY = 1000000000000000000000000;
         _socialToken.initialize(
             name,
             symbol,
-            TOTAL_SUPPLY
+            _TOTAL_SUPPLY,
+            msg.sender
         );
 
         _socialTokenMapping[msg.sender] = address(_socialToken);
