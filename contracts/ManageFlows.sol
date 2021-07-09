@@ -54,7 +54,7 @@ contract ManageFlows is SuperAppBase{
         );
     }
 
-    function StopFlow(address _acceptedToken,address sender,address receiver) public {
+    function StopFlow(address _acceptedToken,address sender,address receiver) internal {
         ISuperToken _token = ISuperToken(_acceptedToken);
         _host.callAgreement(
             _cfa,
@@ -73,5 +73,7 @@ contract ManageFlows is SuperAppBase{
         //Check if flow exists
         //If flow exists stop it and then start it to another
     }
+
+    
     
 }
