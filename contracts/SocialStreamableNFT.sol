@@ -55,8 +55,10 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
         returns (bytes memory newCtx)
     {
       newCtx = ctx;
-      address _receiver = ownerOf(0);//TODO: How to make this generalized? Will have to decode the context data to get the tokenID
-      _nftToken[0] = address(_acceptedToken);
+      //(std.itemsOrdered,std.units) = abi.decode(_host.decodeCtx(ctx).userData, (uint[3], uint[3]));
+      uint256 tokId = abi.decode(_host.decodeCtx(ctx).userData, (uint256));//Solidity
+      address _receiver = ownerOf(tokId);//TODO: How to make this generalized? Will have to decode the context data to get the tokenID
+      _nftToken[tokId] = address(_acceptedToken);
       // @dev This will give me the new flowRate, as it is called in after callbacks
       int96 netFlowRate = _cfa.getNetFlow(_acceptedToken, address(this));
       (,int96 outFlowRate,,) = _cfa.getFlow(_acceptedToken, address(this), _receiver); // CHECK: unclear what happens if flow doesn't exist.

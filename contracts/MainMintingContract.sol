@@ -47,7 +47,7 @@ contract MainMintingContract {
         // require(_hasToken[msg.sender],"You have already created a social token");//How to do this?
         _socialToken = INativeSuperToken(address(new NativeSuperTokenProxy()));
         _superTokenFactory.initializeCustomSuperToken(address(_socialToken));  
-        uint256 _TOTAL_SUPPLY = 1000000000000000000000000;
+        uint256 _TOTAL_SUPPLY = 1000000000000000000000000;//TODO: Use supplied total supply
         _socialToken.initialize(
             name,
             symbol,
