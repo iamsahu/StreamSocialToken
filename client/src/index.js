@@ -4,13 +4,43 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import { Web3ReactProvider } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers';
+// import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+// export const clientNFT = new ApolloClient({
+//   uri: process.env.REACT_APP_GRAPHQL_NFT, //"http://localhost:8000/subgraphs/name/iamsahu/idatest",
+//   cache: new InMemoryCache(),
+// });
+
+// export const clientAccounts = new ApolloClient({
+//   uri: process.env.REACT_APP_GRAPHQL_ACCOUNTS, //"http://localhost:8000/subgraphs/name/iamsahu/idatest",
+//   cache: new InMemoryCache(),
+//   headers: {
+//     'content-type': 'application/json',
+//     'x-hasura-admin-secret': process.env.REACT_APP_GRAPHQL_ACCOUNTS_SECRET,
+//   },
+// });
+
+// export const clientSocialToken = new ApolloClient({
+//   uri: process.env.REACT_APP_GRAPHQL_SOCIALTOKEN, //"http://localhost:8000/subgraphs/name/iamsahu/idatest",
+//   cache: new InMemoryCache(),
+// });
+function getLibrary(provider, connector) {
+  // return new ethers.providers.Web3Provider(window.ethereum);
+  const test = new Web3Provider(provider);
+
+  return test; // this will vary according to whether you use e.g. ethers or web3.js
+}
 
 ReactDOM.render(
   <StrictMode>
-    <ChakraProvider theme={theme}>
-      <ColorModeScript />
-      <App />
-    </ChakraProvider>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <ChakraProvider theme={theme}>
+        <ColorModeScript />
+        <App />
+      </ChakraProvider>
+    </Web3ReactProvider>
   </StrictMode>,
   document.getElementById('root')
 );

@@ -124,15 +124,6 @@ contract("MainMintingContract", async (accounts) => {
 				flowRate: "385802469",
 				userData: we.eth.abi.encodeParameter("uint256", 0),
 			});
-			// Javascript
-			// await sf.cfa.createFlow({
-			// 	flowRate: flowRate.toString(),
-			// 	receiver: contract,
-			// 	sender: this.state.user.address,
-			// 	superToken: DAIxAddress,
-			// 	userData: this.state.web3.eth.abi.encodeParameter("uint256", tokenId),
-			// });
-			//uint256 userData = abi.decode(host.decodeCtx(_ctx).userData, (uint256));//Solidity
 
 			await traveler.advanceTimeAndBlock(TEST_TRAVEL_TIME);
 			console.log("SS 1: ", (await dai.balanceOf(accounts[1])).toString());
