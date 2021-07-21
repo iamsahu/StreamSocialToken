@@ -1,24 +1,8 @@
 import React from 'react';
-import {
-  Box,
-  Text,
-  Image,
-  Tag,
-  chakra,
-  Flex,
-  Spacer,
-  SimpleGrid,
-  Button,
-} from '@chakra-ui/react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from 'react-router-dom';
+import { Box, Text, Image, Flex, Spacer } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
 import MintNFT from '../components/MintNFT';
+import MintToken from '../components/MintToken';
 import CreatorNFTs from '../components/CreatorNFTs';
 
 function CreatorPage(params) {
@@ -59,15 +43,17 @@ function CreatorPage(params) {
           <Spacer />
           <Text>Here is something about me</Text>
           <Spacer />
-          <MintNFT />
+          <MintNFT id={id} />
+          <MintToken id={id} />
         </Box>
       </Flex>
       <Text fontSize="4xl">My NFTs</Text>
       <Flex height="full" padding="2" width="full" justifyContent="center">
-        <CreatorNFTs />
+        <CreatorNFTs id={id} />
       </Flex>
     </Flex>
   );
 }
 
 export default CreatorPage;
+//Query to fetch the details of the creator

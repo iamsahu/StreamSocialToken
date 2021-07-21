@@ -2,6 +2,7 @@ var SimpleStorage = artifacts.require("./MainMintingContract.sol");
 const SuperfluidSDK = require("@superfluid-finance/js-sdk");
 const MainMintingContract = artifacts.require("MainMintingContract");
 const SocialStreamableNFT = artifacts.require("SocialStreamableNFT");
+const Emitter = artifacts.require("Emitter");
 
 module.exports = async function (deployer, network) {
 	if (network == "develop") {
@@ -12,16 +13,19 @@ module.exports = async function (deployer, network) {
 		});
 		await sf.initialize();
 		let st = await sf.host.getSuperTokenFactory();
+		let emit = await deployer.deploy(Emitter);
 		await deployer.deploy(
 			MainMintingContract,
 			sf.host.address,
 			sf.agreements.cfa.address,
-			st
+			st,
+			emit.address
 		);
 		await deployer.deploy(
 			SocialStreamableNFT,
 			sf.host.address,
-			sf.agreements.cfa.address
+			sf.agreements.cfa.address,
+			emit.address
 		);
 		// _mainMint = await MainMintingContract.new(
 		// 	sf.host.address,

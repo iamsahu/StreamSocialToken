@@ -8,11 +8,12 @@ import {
   Image,
   Button,
 } from '@chakra-ui/react';
+import TransferNFT from './TransferNFT';
 
 const IMAGE =
   'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
 
-export default function NFTOwner() {
+export default function NFTOwner(props) {
   return (
     <Center py={12}>
       <Box
@@ -65,9 +66,7 @@ export default function NFTOwner() {
             Name of the NFT
           </Heading>
           <Stack direction={'row'} align={'center'}>
-            <Button fontWeight={800} fontSize={'xl'}>
-              Sell
-            </Button>
+            <TransferNFT />
           </Stack>
           <Stack direction={'row'} align={'center'}>
             <Text fontWeight={400} fontSize={'medium'}>

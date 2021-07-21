@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./ManageFlows.sol";
+import "./Emitter.sol";
 
 //How do we add a flow before it is transferred to someone or the flow starts as soon as it is transferred to someone
 contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
@@ -13,16 +14,20 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
     mapping (uint256=>address) _nftCreator;
     mapping (uint256=>address) _nftToken;
 
+    Emitter _emitter;
+
     Counters.Counter private _tokenIdCounter;
 
     constructor(ISuperfluid host,
-        IConstantFlowAgreementV1 cfa) ERC721("SocialStreamableNFT", "SSSNFT") ManageFlows(host,cfa) {
+        IConstantFlowAgreementV1 cfa,address emitterAdd) ERC721("SocialStreamableNFT", "SSSNFT") ManageFlows(host,cfa) {
+            _emitter=Emitter(emitterAdd);
         }
 
     function safeMint(address to,string memory tokenURI) public {
         _safeMint(to, _tokenIdCounter.current());
         _setTokenURI(_tokenIdCounter.current(), tokenURI);
         _nftCreator[_tokenIdCounter.current()] = msg.sender;
+        _emitter.minted(msg.sender,to,_tokenIdCounter.current(),tokenURI);
         _tokenIdCounter.increment();
     }
 
@@ -30,10 +35,10 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
         super._burn(tokenId);
     }
 
-    function createFlow(uint256 tokenId,address token,int96 flowRate) external {
-        require(ownerOf(tokenId)!=msg.sender,"Flow could be created only after the NFT is bought by someone else");
-        CreateFlow(token, ownerOf(tokenId), flowRate);
-    }
+    // function createFlow(uint256 tokenId,address token,int96 flowRate) external {
+    //     require(ownerOf(tokenId)!=msg.sender,"Flow could be created only after the NFT is bought by someone else");
+    //     CreateFlow(token, ownerOf(tokenId), flowRate);
+    // }
 
     function stopFlow(uint256 tokenId,address token) external {
         require(_nftCreator[tokenId]==msg.sender,"Only the creator of the NFT could stop the flow ");
@@ -45,9 +50,10 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
         address to,
         uint256 tokenId
     ) internal override {
-        //Figure out how to detect when this is called during minting
-        if(from!=address(0))
-        _changeReceiver(from,to,tokenId);
+        
+        if(from!=address(0)){//When it is minted the address is set to zero, we don't need to change receiver in this case
+            _changeReceiver(from,to,tokenId);
+        }
     }
 
     function _updateOutflow(bytes calldata ctx,ISuperToken _acceptedToken)
@@ -147,8 +153,7 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
         }
         // @dev set global receiver to new receiver
         
-
-        // emit ReceiverChanged(_receiver);
+        _emitter.nftTransferred(from,newReceiver,tokenId);
     }
 
     /**************************************************************************

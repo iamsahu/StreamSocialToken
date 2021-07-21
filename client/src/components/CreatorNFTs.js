@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { SimpleGrid } from '@chakra-ui/layout';
 import NFT from './NFT';
+// import {clientAccounts} from '../index'
 
 function CreatorNFTs(params) {
   let { id } = useParams();

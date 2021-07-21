@@ -8,6 +8,7 @@ import {
   Image,
   Button,
 } from '@chakra-ui/react';
+import Stream from './Stream';
 
 const IMAGE =
   'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
@@ -58,22 +59,20 @@ export default function NFT() {
           />
         </Box>
         <Stack pt={10} align={'center'}>
-          <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+          {/* <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
             Creator
-          </Text>
+          </Text> */}
           <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
             Name of the NFT
           </Heading>
           <Stack direction={'row'} align={'center'}>
-            <Button fontWeight={800} fontSize={'xl'}>
-              Sell
-            </Button>
+            <Stream />
           </Stack>
-          <Stack direction={'row'} align={'center'}>
+          {/* <Stack direction={'row'} align={'center'}>
             <Text fontWeight={400} fontSize={'medium'}>
               Royalites earned: 123 USDC
             </Text>
-          </Stack>
+          </Stack> */}
         </Stack>
       </Box>
     </Center>

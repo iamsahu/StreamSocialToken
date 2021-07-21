@@ -19,7 +19,7 @@ import {
 from "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperTokenFactory.sol";
 
 import { INativeSuperToken, NativeSuperTokenProxy } from "@superfluid-finance/ethereum-contracts/contracts/tokens/NativeSuperToken.sol";
-
+import "./Emitter.sol";
 
 contract MainMintingContract {
     mapping (address=>bool) public _hasToken;
@@ -27,16 +27,14 @@ contract MainMintingContract {
     INativeSuperToken public _socialToken;
     ISuperTokenFactory private _superTokenFactory;
 
-    // Events
+    Emitter _emitter;
 
-    
-    event SocialTokenCreated(address owner,address tokenAddress,string name,string symbol,uint total_supply);
-    
     constructor (
         ISuperfluid host,
         IConstantFlowAgreementV1 cfa,
-        ISuperTokenFactory superTokenFactory) {
+        ISuperTokenFactory superTokenFactory,address emitterAdd) {
         _superTokenFactory = superTokenFactory;
+        _emitter = Emitter(emitterAdd);
     }
 
     function mySuperSocialTokenAddress() external returns(address){
@@ -56,7 +54,7 @@ contract MainMintingContract {
         );
 
         _socialTokenMapping[msg.sender] = address(_socialToken);
-        emit SocialTokenCreated(msg.sender, address(_socialToken), name, symbol, TOTAL_SUPPLY);
+        _emitter.socialTokenCreated(msg.sender, address(_socialToken), name, symbol, TOTAL_SUPPLY);
         return address(_socialToken);
     }
 }
