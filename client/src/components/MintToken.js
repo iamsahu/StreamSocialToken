@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import {
   Button,
   Modal,
@@ -27,8 +28,6 @@ import {
 import { useWeb3React } from '@web3-react/core';
 import { Contract } from '@ethersproject/contracts';
 import MainMintingContract from '../contracts/MainMintingContract.json';
-import { Formik } from 'formik';
-import FormikExample from './MintForm';
 
 function MintToken(params) {
   const web3React = useWeb3React();
@@ -40,12 +39,13 @@ function MintToken(params) {
       MainMintingContract.abi,
       web3React.library.getSigner()
     );
-    // console.log(contract);
+    console.log(values);
     if (typeof contract !== undefined)
       await contract
-        .mintSuperSocialToken(values.name, values.symbol, values.totalSupply)
+        .mintSuperSocialToken(values.tokenName, values.symbol, values.amount)
         .then(response => {
           console.log(response);
+          onClose();
           // setVisible(false);
           // setConfirmLoading(false);
           // openNotification();
@@ -68,6 +68,24 @@ function MintToken(params) {
     return error;
   }
 
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
+  function onSubmit(values) {
+    console.log(values);
+    return new Promise(async resolve => {
+      await CreateToken(values);
+      resolve();
+      // setTimeout(() => {
+      //   alert(JSON.stringify(values, null, 2));
+      //   resolve();
+      // }, 3000);
+    });
+  }
+
   return (
     <>
       <Button onClick={onOpen}>Mint Token</Button>
@@ -83,30 +101,33 @@ function MintToken(params) {
           <ModalContent>
             <ModalHeader>Modal Title</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
-              <FormikExample />
-              {/* <FormControl id="tokenName">
-                <FormLabel>Name of Token</FormLabel>
-                <Input />
-              </FormControl>
-              <FormControl id="symbol">
-                <FormLabel>Symbol</FormLabel>
-                <Input />
-              </FormControl>
-              <FormControl id="amount">
-                <FormLabel>Amount to Mint</FormLabel>
-                <NumberInput>
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </FormControl> */}
-            </ModalBody>
-            <ModalFooter>
-              <Button>Submit</Button>
-            </ModalFooter>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <ModalBody>
+                <FormControl id="tokenName">
+                  <FormLabel htmlFor="tokenName">Name of Token</FormLabel>
+                  <Input id="tokenName" {...register('tokenName')} />
+                </FormControl>
+                <FormControl id="symbol">
+                  <FormLabel>Symbol</FormLabel>
+                  <Input id="symbol" {...register('symbol')} />
+                </FormControl>
+                <FormControl id="amount">
+                  <FormLabel>Amount to Mint</FormLabel>
+                  <NumberInput>
+                    <NumberInputField id="amount" {...register('amount')} />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </FormControl>
+              </ModalBody>
+              <ModalFooter>
+                <Button isLoading={isSubmitting} type="submit">
+                  Submit
+                </Button>
+              </ModalFooter>
+            </form>
           </ModalContent>
         </ModalOverlay>
       </Modal>

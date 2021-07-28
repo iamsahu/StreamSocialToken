@@ -85,11 +85,19 @@ contract("MainMintingContract", async (accounts) => {
 		it("Case #6 - Random testing", async () => {
 			try {
 				//Creating the custom super token
+				let tp2 = await _mainMint.mintSuperSocialToken(
+					"SocialStream",
+					"SS",
+					1000000000, //How to send a big number
+					{ from: accounts[0] }
+				);
 				let tp = await _mainMint.mintSuperSocialToken(
 					"SocialStream",
 					"SS",
-					1000000000 //How to send a big number
+					1000000000, //How to send a big number
+					{ from: accounts[1] }
 				);
+				// .call();
 				// console.log(tp);
 			} catch (error) {
 				console.log("Error while minting: " + error.message);
@@ -99,17 +107,22 @@ contract("MainMintingContract", async (accounts) => {
 			let ssA = await _mainMint.mySuperSocialTokenAddress.call({
 				from: accounts[0],
 			});
+			let ssA2 = await _mainMint.mySuperSocialTokenAddress.call({
+				from: accounts[1],
+			});
 			console.log("Social Token Address: " + ssA);
+			console.log("Social Token Address: " + ssA2);
 
 			//Getting the balance of accounts[0]
 			let dai = await sf.contracts.ISuperToken.at(ssA);
+			let dai2 = await sf.contracts.ISuperToken.at(ssA2);
 			console.log("SS 0: ", (await dai.balanceOf(accounts[0])).toString());
 			console.log("SS 1: ", (await dai.balanceOf(accounts[1])).toString());
 			console.log("SS 2: ", (await dai.balanceOf(accounts[1])).toString());
 			// console.log(ssA);
 			//Creating a NFT and transferring it to account 2
 			let NFT = await _nftContract.safeMint(accounts[1], "This is a test mint");
-
+			NFT = await _nftContract.safeMint(accounts[2], "This is a test mint");
 			//Initiating a flow to the NFT
 			// let flowcr = await _nftContract.createFlow(0, ssA, "385802469");
 
@@ -118,11 +131,21 @@ contract("MainMintingContract", async (accounts) => {
 				address: accounts[0],
 				token: ssA, // address of the Super Token
 			});
+			const user1 = sf.user({
+				address: accounts[1],
+				token: ssA2, // address of the Super Token
+			});
 			const we = new WWeb3();
 			await user0.flow({
 				recipient: _nftContract.address,
 				flowRate: "385802469",
 				userData: we.eth.abi.encodeParameter("uint256", 0),
+			});
+
+			await user1.flow({
+				recipient: _nftContract.address,
+				flowRate: "385802469",
+				userData: we.eth.abi.encodeParameter("uint256", 1),
 			});
 
 			await traveler.advanceTimeAndBlock(TEST_TRAVEL_TIME);
@@ -133,14 +156,17 @@ contract("MainMintingContract", async (accounts) => {
 			await traveler.advanceTimeAndBlock(3600 * 2);
 			console.log("SS 1: ", (await dai.balanceOf(accounts[1])).toString());
 			console.log("SS 2: ", (await dai.balanceOf(accounts[2])).toString());
+			console.log("SS 2: ", (await dai2.balanceOf(accounts[2])).toString());
 			console.log("SS 0: ", (await dai.balanceOf(accounts[0])).toString());
 			await traveler.advanceTimeAndBlock(3600 * 2);
 			console.log("SS 1: ", (await dai.balanceOf(accounts[1])).toString());
 			console.log("SS 2: ", (await dai.balanceOf(accounts[2])).toString());
+			console.log("SS 2: ", (await dai2.balanceOf(accounts[2])).toString());
 			console.log("SS 0: ", (await dai.balanceOf(accounts[0])).toString());
 			await traveler.advanceTimeAndBlock(3600 * 2);
 			console.log("SS 1: ", (await dai.balanceOf(accounts[1])).toString());
 			console.log("SS 2: ", (await dai.balanceOf(accounts[2])).toString());
+			console.log("SS 2: ", (await dai2.balanceOf(accounts[2])).toString());
 			console.log("SS 0: ", (await dai.balanceOf(accounts[0])).toString());
 		});
 	});

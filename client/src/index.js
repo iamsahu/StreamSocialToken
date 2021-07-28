@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
-// import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 // export const clientNFT = new ApolloClient({
 //   uri: process.env.REACT_APP_GRAPHQL_NFT, //"http://localhost:8000/subgraphs/name/iamsahu/idatest",
@@ -26,6 +26,12 @@ import { Web3Provider } from '@ethersproject/providers';
 //   uri: process.env.REACT_APP_GRAPHQL_SOCIALTOKEN, //"http://localhost:8000/subgraphs/name/iamsahu/idatest",
 //   cache: new InMemoryCache(),
 // });
+
+export const client = new ApolloClient({
+  uri: 'https://api.thegraph.com/subgraphs/name/iamsahu/superfluidida', //"http://localhost:8000/subgraphs/name/iamsahu/idatest",
+  cache: new InMemoryCache(),
+});
+
 function getLibrary(provider, connector) {
   // return new ethers.providers.Web3Provider(window.ethereum);
   const test = new Web3Provider(provider);
@@ -36,10 +42,12 @@ function getLibrary(provider, connector) {
 ReactDOM.render(
   <StrictMode>
     <Web3ReactProvider getLibrary={getLibrary}>
-      <ChakraProvider theme={theme}>
-        <ColorModeScript />
-        <App />
-      </ChakraProvider>
+      <ApolloProvider client={client}>
+        <ChakraProvider theme={theme}>
+          <ColorModeScript />
+          <App />
+        </ChakraProvider>
+      </ApolloProvider>
     </Web3ReactProvider>
   </StrictMode>,
   document.getElementById('root')

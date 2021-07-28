@@ -24,11 +24,28 @@ const GET_DOGS = gql`
   }
 `;
 
+const GET2 = gql`
+  query subb {
+    indexes {
+      activeSubscribers
+    }
+  }
+`;
+
 function OwnerNFTs(params) {
   let { id } = useParams();
-  //   const { loading, error, data } = useQuery(GET_DOGS, {
+  const { loading, error, data } = useQuery(GET2); //, {
   //     variables: { owner: id },
   //   });
+  if (loading) {
+    return <div>loading</div>;
+  }
+  if (error) {
+    return <div>error</div>;
+  }
+  if (data) {
+    console.log(data);
+  }
   return (
     <Flex width="full" justifyContent="center">
       <SimpleGrid columns={3} spacing={10}>

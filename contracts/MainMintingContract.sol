@@ -28,7 +28,7 @@ contract MainMintingContract {
     ISuperTokenFactory private _superTokenFactory;
 
     Emitter _emitter;
-
+    event SocialTokenCreated(address owner,address tokenAddress,string name,string symbol,uint total_supply);
     constructor (
         ISuperfluid host,
         IConstantFlowAgreementV1 cfa,
@@ -54,7 +54,9 @@ contract MainMintingContract {
         );
 
         _socialTokenMapping[msg.sender] = address(_socialToken);
+        _hasToken[msg.sender] = true;
         _emitter.socialTokenCreated(msg.sender, address(_socialToken), name, symbol, TOTAL_SUPPLY);
+        emit SocialTokenCreated(msg.sender, address(_socialToken), name, symbol, TOTAL_SUPPLY);
         return address(_socialToken);
     }
 }

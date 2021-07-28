@@ -4,9 +4,29 @@ import { useParams } from 'react-router-dom';
 import MintNFT from '../components/MintNFT';
 import MintToken from '../components/MintToken';
 import CreatorNFTs from '../components/CreatorNFTs';
+import MainMintingContract from '../contracts/MainMintingContract.json';
+import { useWeb3React } from '@web3-react/core';
+import { Contract } from '@ethersproject/contracts';
 
 function CreatorPage(params) {
   let { id } = useParams();
+  const web3React = useWeb3React();
+  //Fetch data from the subgraph if the user has the tokens minted if minted then social token minting button is switched off
+
+  if (web3React.active) {
+    const contract = new Contract(
+      MainMintingContract.networks[web3React.chainId].address,
+      MainMintingContract.abi,
+      web3React.library.getSigner()
+    );
+    contract.on(
+      'SocialTokenCreated',
+      (creatorAdd, _socialTokenAdd, name, symbol, TOTAL_SUPPLY) => {
+        console.log(creatorAdd, _socialTokenAdd, name, symbol, TOTAL_SUPPLY);
+      }
+    );
+  }
+
   console.log(id);
   const IMAGE =
     'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';

@@ -13,20 +13,22 @@ module.exports = async function (deployer, network) {
 		});
 		await sf.initialize();
 		let st = await sf.host.getSuperTokenFactory();
-		let emit = await deployer.deploy(Emitter);
-		await deployer.deploy(
-			MainMintingContract,
-			sf.host.address,
-			sf.agreements.cfa.address,
-			st,
-			emit.address
-		);
-		await deployer.deploy(
-			SocialStreamableNFT,
-			sf.host.address,
-			sf.agreements.cfa.address,
-			emit.address
-		);
+		await deployer.deploy(Emitter).then(async function () {
+			await deployer.deploy(
+				MainMintingContract,
+				sf.host.address,
+				sf.agreements.cfa.address,
+				st,
+				Emitter.address
+			);
+			await deployer.deploy(
+				SocialStreamableNFT,
+				sf.host.address,
+				sf.agreements.cfa.address,
+				Emitter.address
+			);
+		});
+
 		// _mainMint = await MainMintingContract.new(
 		// 	sf.host.address,
 		// 	sf.agreements.cfa.address,
