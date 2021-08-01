@@ -1,0 +1,30 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Emitter
+    network: rinkeby
+    source:
+      address: "0x1c433A8C8F59970Fb3fCbdec9f2D87370b8a895b"
+      abi: Emitter
+      startBlock: 9038851
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - NFTMinted
+        - NFTTransferred
+        - SocialTokenCreated
+      abis:
+        - name: Emitter
+          file: ./abis/Emitter.json
+      eventHandlers:
+        - event: NFTMinted(address,address,uint256,string,uint256)
+          handler: handleNFTMinted
+        - event: NFTTransferred(address,address,uint256)
+          handler: handleNFTTransferred
+        - event: SocialTokenCreated(address,address,string,string,uint256)
+          handler: handleSocialTokenCreated
+      file: ./src/mapping.ts

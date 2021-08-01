@@ -1,0 +1,23 @@
+type ExampleEntity @entity {
+  id: ID!
+  count: BigInt!
+  by: Bytes! # address
+  to: Bytes! # address
+}
+
+type NFT @entity{
+  id:ID!
+  creator:Bytes
+  owner:Bytes
+  uri:String
+  royalty:BigInt
+}
+
+type SocialToken @entity{
+  id:ID!
+  owner:Bytes
+  address:Bytes
+  symbol:String
+  name:String
+  totalQuantity:BigInt
+}
