@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Text, Image, Flex, Spacer } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import MintNFT from '../components/MintNFT';
@@ -7,11 +7,45 @@ import CreatorNFTs from '../components/CreatorNFTs';
 import MainMintingContract from '../contracts/MainMintingContract.json';
 import { useWeb3React } from '@web3-react/core';
 import { Contract } from '@ethersproject/contracts';
+import { gql, useQuery } from '@apollo/client';
+const GET2 = gql`
+  query subb($owner: Bytes) {
+    socialTokens(where: { owner: $owner }) {
+      symbol
+      id
+      owner
+      name
+      totalQuantity
+      address
+    }
+  }
+`;
 
 function CreatorPage(params) {
   let { id } = useParams();
   const web3React = useWeb3React();
   //Fetch data from the subgraph if the user has the tokens minted if minted then social token minting button is switched off
+  const [dataPoints, setDataPoints] = useState([]);
+  const { loading, error, data } = useQuery(GET2, {
+    variables: { owner: id },
+  });
+
+  useEffect(() => {
+    if (data && !error & !loading) {
+      setDataPoints(data.socialTokens);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <div>loading</div>;
+  }
+  if (error) {
+    console.log(error);
+    return <div>error</div>;
+  }
+  if (data) {
+    console.log(data);
+  }
 
   if (web3React.active) {
     const contract = new Contract(
@@ -23,11 +57,11 @@ function CreatorPage(params) {
       'SocialTokenCreated',
       (creatorAdd, _socialTokenAdd, name, symbol, TOTAL_SUPPLY) => {
         console.log(creatorAdd, _socialTokenAdd, name, symbol, TOTAL_SUPPLY);
+        //Add code here to create the NFT in UI
       }
     );
   }
 
-  console.log(id);
   const IMAGE =
     'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
   return (
@@ -63,13 +97,28 @@ function CreatorPage(params) {
           <Spacer />
           <Text>Here is something about me</Text>
           <Spacer />
-          <MintNFT id={id} />
-          <MintToken id={id} />
+          {web3React.active ? (
+            <>
+              {dataPoints.length > 0 ? (
+                <MintNFT id={id} />
+              ) : (
+                <MintToken id={id} />
+              )}
+            </>
+          ) : (
+            <></>
+          )}
         </Box>
       </Flex>
       <Text fontSize="4xl">My NFTs</Text>
       <Flex height="full" padding="2" width="full" justifyContent="center">
-        <CreatorNFTs id={id} />
+        <CreatorNFTs
+          id={id}
+          socialToken={dataPoints.length > 0 ? dataPoints[0].address : ''}
+          totalQuantity={
+            dataPoints.length > 0 ? dataPoints[0].totalQuantity : ''
+          }
+        />
       </Flex>
     </Flex>
   );

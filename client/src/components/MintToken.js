@@ -28,6 +28,7 @@ import {
 import { useWeb3React } from '@web3-react/core';
 import { Contract } from '@ethersproject/contracts';
 import MainMintingContract from '../contracts/MainMintingContract.json';
+import web3 from 'web3';
 
 function MintToken(params) {
   const web3React = useWeb3React();
@@ -42,7 +43,11 @@ function MintToken(params) {
     console.log(values);
     if (typeof contract !== undefined)
       await contract
-        .mintSuperSocialToken(values.tokenName, values.symbol, values.amount)
+        .mintSuperSocialToken(
+          values.tokenName,
+          values.symbol,
+          web3.utils.toWei(values.amount, 'ether')
+        )
         .then(response => {
           console.log(response);
           onClose();

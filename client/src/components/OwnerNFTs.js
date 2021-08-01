@@ -1,42 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { Flex, SimpleGrid } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import NFTOwner from './NFTOwner';
 
-const GET_DOGS = gql`
-  query subscriberEntities($owner: Bytes) {
-    receiveAddresses(where: { owner: $owner }) {
-      id
-      receiveAddress
-      owner
-      timeStamp
-      name
-      donations {
-        donation
-        token
-      }
-      distributions {
-        amountDistributed
-        token
-      }
-    }
-  }
-`;
-
 const GET2 = gql`
-  query subb {
-    indexes {
-      activeSubscribers
+  query subb($owner: Bytes) {
+    nfts(where: { owner: $owner }) {
+      owner
+      creator
+      id
+      uri
+      royalty
     }
   }
 `;
 
 function OwnerNFTs(params) {
   let { id } = useParams();
-  const { loading, error, data } = useQuery(GET2); //, {
-  //     variables: { owner: id },
-  //   });
+  const [dataPoints, setDataPoints] = useState([]);
+  const { loading, error, data } = useQuery(GET2, {
+    variables: { owner: id },
+  });
+
+  useEffect(() => {
+    if (data && !error & !loading) {
+      setDataPoints(data.nfts);
+    }
+  }, [data]);
+
   if (loading) {
     return <div>loading</div>;
   }
@@ -46,12 +38,13 @@ function OwnerNFTs(params) {
   if (data) {
     console.log(data);
   }
+
   return (
     <Flex width="full" justifyContent="center">
       <SimpleGrid columns={3} spacing={10}>
-        <NFTOwner />
-        <NFTOwner />
-        <NFTOwner />
+        {dataPoints.map(element => (
+          <NFTOwner key={element['id']} props={element} />
+        ))}
       </SimpleGrid>
     </Flex>
   );

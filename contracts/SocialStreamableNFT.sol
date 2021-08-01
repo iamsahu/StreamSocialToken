@@ -13,6 +13,7 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
     using Counters for Counters.Counter;
     mapping (uint256=>address) _nftCreator;
     mapping (uint256=>address) _nftToken;
+    mapping (uint256=>uint256) _royalty;
 
     Emitter _emitter;
 
@@ -23,11 +24,12 @@ contract SocialStreamableNFT is ManageFlows,ERC721, Ownable {
             _emitter=Emitter(emitterAdd);
         }
 
-    function safeMint(address to,string memory tokenURI) public {
+    function safeMint(address to,string memory tokenURI,uint256 royalty) public {
         _safeMint(to, _tokenIdCounter.current());
         _setTokenURI(_tokenIdCounter.current(), tokenURI);
         _nftCreator[_tokenIdCounter.current()] = msg.sender;
-        _emitter.minted(msg.sender,to,_tokenIdCounter.current(),tokenURI);
+        _royalty[_tokenIdCounter.current()] = royalty;
+        _emitter.minted(msg.sender,to,_tokenIdCounter.current(),tokenURI,royalty);
         _tokenIdCounter.increment();
     }
 

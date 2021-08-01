@@ -3,9 +3,9 @@ pragma solidity ^0.7.0;
 
 contract Emitter{
     
-    event NFTMinted(address by,address to,uint256 tokenId,string tokenURI);
-    function minted(address by,address to,uint256 tokenId,string memory tokenURI) external{
-        emit NFTMinted(by,to,tokenId,tokenURI);
+    event NFTMinted(address by,address to,uint256 tokenId,string tokenURI,uint256 royalty);
+    function minted(address by,address to,uint256 tokenId,string memory tokenURI,uint256 royalty) external{
+        emit NFTMinted(by,to,tokenId,tokenURI,royalty);
     }
 
     event SocialTokenCreated(address owner,address tokenAddress,string name,string symbol,uint total_supply);

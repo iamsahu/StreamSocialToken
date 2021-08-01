@@ -83,18 +83,19 @@ contract("MainMintingContract", async (accounts) => {
 
 	describe("Testing Flow to a NFT", async function () {
 		it("Case #6 - Random testing", async () => {
+			const we = new WWeb3();
 			try {
 				//Creating the custom super token
 				let tp2 = await _mainMint.mintSuperSocialToken(
 					"SocialStream",
 					"SS",
-					1000000000, //How to send a big number
+					we.utils.toWei("1000000000", "ether"),
 					{ from: accounts[0] }
 				);
 				let tp = await _mainMint.mintSuperSocialToken(
 					"SocialStream",
 					"SS",
-					1000000000, //How to send a big number
+					we.utils.toWei("1000000000", "ether"),
 					{ from: accounts[1] }
 				);
 				// .call();
@@ -121,8 +122,12 @@ contract("MainMintingContract", async (accounts) => {
 			console.log("SS 2: ", (await dai.balanceOf(accounts[1])).toString());
 			// console.log(ssA);
 			//Creating a NFT and transferring it to account 2
-			let NFT = await _nftContract.safeMint(accounts[1], "This is a test mint");
-			NFT = await _nftContract.safeMint(accounts[2], "This is a test mint");
+			let NFT = await _nftContract.safeMint(
+				accounts[1],
+				"This is a test mint",
+				25
+			);
+			NFT = await _nftContract.safeMint(accounts[2], "This is a test mint", 25);
 			//Initiating a flow to the NFT
 			// let flowcr = await _nftContract.createFlow(0, ssA, "385802469");
 
@@ -135,7 +140,7 @@ contract("MainMintingContract", async (accounts) => {
 				address: accounts[1],
 				token: ssA2, // address of the Super Token
 			});
-			const we = new WWeb3();
+
 			await user0.flow({
 				recipient: _nftContract.address,
 				flowRate: "385802469",

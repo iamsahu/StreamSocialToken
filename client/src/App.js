@@ -8,10 +8,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import CreatorPage from './pages/CreatorPage';
 import NFTOwnerPage from './pages/NFTOwnerPage';
+import { SFProvider } from './helpers/sfcontext';
+import SuperfluidSDK from '@superfluid-finance/js-sdk';
 
 function App() {
   const web3React = useWeb3React();
   const [metaMask, setMetaMask] = useState('');
+  const [SF, setSF] = useState(null);
   const details = useRef({
     web3: null,
     accounts: [],
@@ -49,10 +52,24 @@ function App() {
       });
   }, [web3React.active, web3React.connector]);
 
+  useEffect(async () => {
+    async function initSf() {
+      let sf;
+      web3React.connector.getProvider().then(async provider => {
+        sf = new SuperfluidSDK.Framework({
+          web3: new Web3(provider),
+        });
+        await sf.initialize().then(() => setSF(sf));
+      });
+    }
+    if (web3React.active) if (SF === null) initSf();
+  }, [web3React.active]);
+
   useEffect(() => {
     if (details.current.web3 === null) {
       return;
     }
+
     // const networkId = details.current.chainid;
     // // console.log(networkId);
     // const cc = ERC777Distributor.networks[web3React.chainId];
@@ -143,17 +160,19 @@ function App() {
           </Flex>
         </chakra.header>
         <Flex align="center">
-          <Switch>
-            <Route path="/nftowner/:id">
-              <NFTOwnerPage />
-            </Route>
-            <Route path="/creator/:id">
-              <CreatorPage />
-            </Route>
-            <Route path="/">
-              <LandingPage />
-            </Route>
-          </Switch>
+          <SFProvider value={SF}>
+            <Switch>
+              <Route path="/nftowner/:id">
+                <NFTOwnerPage />
+              </Route>
+              <Route path="/creator/:id">
+                <CreatorPage />
+              </Route>
+              <Route path="/">
+                <LandingPage />
+              </Route>
+            </Switch>
+          </SFProvider>
         </Flex>
       </Box>
     </Router>

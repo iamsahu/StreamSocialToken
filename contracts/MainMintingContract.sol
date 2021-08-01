@@ -44,12 +44,11 @@ contract MainMintingContract {
     function mintSuperSocialToken(string calldata name,string calldata symbol,uint256 TOTAL_SUPPLY) external returns(address) {
         // require(_hasToken[msg.sender],"You have already created a social token");//How to do this?
         _socialToken = INativeSuperToken(address(new NativeSuperTokenProxy()));
-        _superTokenFactory.initializeCustomSuperToken(address(_socialToken));  
-        uint256 _TOTAL_SUPPLY = 1000000000000000000000000;//TODO: Use supplied total supply
+        _superTokenFactory.initializeCustomSuperToken(address(_socialToken));
         _socialToken.initialize(
             name,
             symbol,
-            _TOTAL_SUPPLY,
+            TOTAL_SUPPLY,
             msg.sender
         );
 

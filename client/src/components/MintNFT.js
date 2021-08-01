@@ -32,7 +32,7 @@ function MintNFT(params) {
     // console.log(values);
     if (typeof contract !== undefined)
       await contract
-        .safeMint(values.address, values.URI)
+        .safeMint(values.address, values.URI, values.Royalty)
         .then(response => {
           console.log(response);
           onClose();
@@ -41,16 +41,6 @@ function MintNFT(params) {
           console.log(error.message);
           onClose();
         });
-  }
-
-  function validateName(value) {
-    let error;
-    if (!value) {
-      error = 'Name is required';
-    } else if (value.toLowerCase() !== 'naruto') {
-      error = "Jeez! You're not a fan 😱";
-    }
-    return error;
   }
 
   const {
@@ -95,6 +85,10 @@ function MintNFT(params) {
                 <FormControl id="URI">
                   <FormLabel>URI</FormLabel>
                   <Input id="URI" {...register('URI')} />
+                </FormControl>
+                <FormControl id="Royalty">
+                  <FormLabel>Royalty</FormLabel>
+                  <Input id="Royalty" {...register('Royalty')} />
                 </FormControl>
               </ModalBody>
               <ModalFooter>

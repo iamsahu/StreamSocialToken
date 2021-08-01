@@ -28,14 +28,24 @@ module.exports = async function (deployer, network) {
 				Emitter.address
 			);
 		});
-
-		// _mainMint = await MainMintingContract.new(
-		// 	sf.host.address,
-		// 	sf.agreements.cfa.address,
-		// 	st
-		// );
-
 		return;
 	}
-	deployer.deploy(SimpleStorage);
+	await deployer.deploy(Emitter).then(async function () {
+		await deployer
+			.deploy(
+				MainMintingContract,
+				"0xeD5B5b32110c3Ded02a07c8b8e97513FAfb883B6",
+				"0xF4C5310E51F6079F601a5fb7120bC72a70b96e2A",
+				"0xd465e36e607d493cd4CC1e83bea275712BECd5E0",
+				Emitter.address
+			)
+			.then(async function () {
+				await deployer.deploy(
+					SocialStreamableNFT,
+					"0xeD5B5b32110c3Ded02a07c8b8e97513FAfb883B6",
+					"0xF4C5310E51F6079F601a5fb7120bC72a70b96e2A",
+					Emitter.address
+				);
+			});
+	});
 };
