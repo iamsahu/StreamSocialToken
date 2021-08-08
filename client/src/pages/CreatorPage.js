@@ -26,8 +26,9 @@ function CreatorPage(params) {
   const web3React = useWeb3React();
   //Fetch data from the subgraph if the user has the tokens minted if minted then social token minting button is switched off
   const [dataPoints, setDataPoints] = useState([]);
+  // console.log(id);
   const { loading, error, data } = useQuery(GET2, {
-    variables: { owner: id },
+    variables: { owner: id.toLowerCase() },
   });
 
   useEffect(() => {
@@ -40,11 +41,11 @@ function CreatorPage(params) {
     return <div>loading</div>;
   }
   if (error) {
-    console.log(error);
+    // console.log(error);
     return <div>error</div>;
   }
   if (data) {
-    console.log(data);
+    // console.log(data);
   }
 
   if (web3React.active) {

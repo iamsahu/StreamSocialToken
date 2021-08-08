@@ -36201,10 +36201,16 @@
       "links": {},
       "address": "0x558d1108Fc03e708dCF71BE3cA18D37a9C699d41",
       "transactionHash": "0xcc921374018d19be17c6e779bd898dd4bde43577ae9d5d7989d943111dba054b"
+    },
+    "80001": {
+      "events": {},
+      "links": {},
+      "address": "0x027cb20F1E2D1292B4c54a3b75BFcf8e751F5026",
+      "transactionHash": "0xd4f2061e464daa39f9186d7990e725cb9582ff9c72798f852dcbb27b1030db74"
     }
   },
-  "schemaVersion": "3.3.3",
-  "updatedAt": "2021-08-01T12:49:56.076Z",
+  "schemaVersion": "3.4.2",
+  "updatedAt": "2021-08-08T11:11:23.314Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

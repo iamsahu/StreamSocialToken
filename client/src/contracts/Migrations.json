@@ -928,10 +928,16 @@
       "links": {},
       "address": "0x5E55e42358b129690Cd800a0D2A67b18213f219A",
       "transactionHash": "0x9b7e35d9203ef72150454fc515cb3db2f54b5d06c180dee6a0e919e921521200"
+    },
+    "80001": {
+      "events": {},
+      "links": {},
+      "address": "0x10DebD716e46b7D6D2ca0aA6fbFe5b1c7EEB4fBa",
+      "transactionHash": "0x853c6260fd9c47c601fa0a0efa3211bb5998de74e2cb7d53eea8bd9d3e44b870"
     }
   },
-  "schemaVersion": "3.3.3",
-  "updatedAt": "2021-08-01T12:49:56.106Z",
+  "schemaVersion": "3.4.2",
+  "updatedAt": "2021-08-08T11:11:23.349Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

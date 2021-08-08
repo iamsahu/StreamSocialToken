@@ -1,6 +1,6 @@
 const path = require("path");
 
-const HDWalletProvider = require("truffle-hdwallet-provider");
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 require("dotenv").config();
 module.exports = {
 	// See <http://truffleframework.com/docs/advanced/configuration>
@@ -21,6 +21,16 @@ module.exports = {
 			timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
 			skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
 			networkCheckTimeout: 50000,
+		},
+		mumbai: {
+			provider: () =>
+				new HDWalletProvider(process.env.WALLET_KEY, process.env.MATIC_MUMBAI),
+			network_id: 80001,
+			skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
+			networkCheckTimeout: 100000,
+			confirmations: 2,
+			timeoutBlocks: 200,
+			skipDryRun: true,
 		},
 	},
 	compilers: {

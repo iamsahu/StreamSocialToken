@@ -101,7 +101,7 @@ function Stream(params) {
       })
       .then(response => {
         console.log(response);
-
+        onClose();
         // setVisible(false);
         // setConfirmLoading(false);
       });
@@ -118,14 +118,15 @@ function Stream(params) {
       >
         <ModalOverlay>
           <ModalContent>
-            <ModalHeader>Mint a NFT</ModalHeader>
+            <ModalHeader>Start the stream</ModalHeader>
             <ModalCloseButton />
             <form onSubmit={handleSubmit(onSubmit)}>
               <ModalBody>
-                <FormControl id="flowRate">
+                {/* <FormLabel>Start the stream!!</FormLabel> */}
+                {/* <FormControl id="flowRate">
                   <FormLabel htmlFor="flowRate">flowRate</FormLabel>
                   <Input id="flowRate" {...register('flowRate')} />
-                </FormControl>
+                </FormControl> */}
               </ModalBody>
               <ModalFooter>
                 <Button isLoading={isSubmitting} type="submit">

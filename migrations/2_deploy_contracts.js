@@ -34,16 +34,16 @@ module.exports = async function (deployer, network) {
 		await deployer
 			.deploy(
 				MainMintingContract,
-				"0xeD5B5b32110c3Ded02a07c8b8e97513FAfb883B6",
-				"0xF4C5310E51F6079F601a5fb7120bC72a70b96e2A",
-				"0xd465e36e607d493cd4CC1e83bea275712BECd5E0",
+				"0xEB796bdb90fFA0f28255275e16936D25d3418603", //"0xeD5B5b32110c3Ded02a07c8b8e97513FAfb883B6",
+				"0x49e565Ed1bdc17F3d220f72DF0857C26FA83F873", //"0xF4C5310E51F6079F601a5fb7120bC72a70b96e2A",
+				"0x200657E2f123761662567A1744f9ACAe50dF47E6", //"0xd465e36e607d493cd4CC1e83bea275712BECd5E0",
 				Emitter.address
 			)
 			.then(async function () {
 				await deployer.deploy(
 					SocialStreamableNFT,
-					"0xeD5B5b32110c3Ded02a07c8b8e97513FAfb883B6",
-					"0xF4C5310E51F6079F601a5fb7120bC72a70b96e2A",
+					"0xEB796bdb90fFA0f28255275e16936D25d3418603", // "0xeD5B5b32110c3Ded02a07c8b8e97513FAfb883B6",
+					"0x49e565Ed1bdc17F3d220f72DF0857C26FA83F873", //"0xF4C5310E51F6079F601a5fb7120bC72a70b96e2A",
 					Emitter.address
 				);
 			});
