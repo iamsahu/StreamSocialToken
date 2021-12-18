@@ -38,7 +38,8 @@ function NFTOwnerPage(params) {
       },
     }).then(result => {
       console.log(result.data);
-      setFlows(result.data.data.accounts[0]['flowsReceived']);
+      if (result.data.data.accounts.length > 0)
+        setFlows(result.data.data.accounts[0]['flowsReceived']);
     });
   }, []);
 
